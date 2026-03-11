@@ -6,4 +6,5 @@ from .database import (
     update_milestone,
     add_custom_milestone,
     delete_project,
+    log_alert,
 )

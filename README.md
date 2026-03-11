@@ -1,4 +1,4 @@
-Hackathon Submission: Minetrack by IIT-BHU | Team: [Your Team Name] | Module 1 MVP (First Commit)
+Hackathon Submission: Minetrack by IIT-BHU | Team: Cactadee | Module 1 MVP (First Commit)
 🚀 Project Overview
 MineTrack is a modular web-based platform designed to streamline regulatory compliance and reporting for coal mine development projects. It addresses pain points in manual tracking (e.g., missed deadlines for MoC approvals, forest clearances) by digitizing workflows, automating alerts, and generating reports—reducing delays by an estimated 30% based on industry benchmarks (e.g., Deloitte mining reports).
 
