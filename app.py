@@ -18,6 +18,8 @@ import os
 import sqlite3
 import streamlit as st
 from datetime import date
+from components import report_form
+
 
 sys.path.insert(0, os.path.dirname(__file__))
 
@@ -266,11 +268,12 @@ if role == "Officer":
 
 # ── Manager: full 4-tab view ─────────────────────────────────────
 else:
-    tab1, tab2, tab3, tab4 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "📊 Dashboard",
         "📡 Monitor & Alerts",
         "✏️ Update Milestones",
         "➕ Add Milestone",
+        "📝 Reports",
     ])
     with tab1:
         dashboard.render(pid, pname, milestones_df)
@@ -280,3 +283,6 @@ else:
         update_form.render(milestones_df, project_start)
     with tab4:
         add_milestone.render(pid)
+
+    with tab5:
+        report_form.render(active_project_id=pid)
