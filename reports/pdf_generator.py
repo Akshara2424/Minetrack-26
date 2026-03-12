@@ -1,5 +1,5 @@
 """
-reports/pdf_generator.py — ReportLab PDF generation for MineGuard Module 2
+reports/pdf_generator.py — ReportLab PDF generation for Angara Module 2
 
 Generates two MoC-style report types:
   1. MIS Quarterly Report  — full milestone status table
@@ -174,7 +174,7 @@ def _footer_block(styles: dict, report_type: str) -> list:
         HRFlowable(width="100%", thickness=0.5, color=MOC_BORDER),
         Spacer(1, 4),
         Paragraph(
-            f"MineGuard Compliance System · {report_type} · "
+            f"Angara Compliance System · {report_type} · "
             f"Generated: {datetime.now().strftime('%d %b %Y %H:%M')} · "
             "Ministry of Coal — Internal Use Only",
             styles["footer"],

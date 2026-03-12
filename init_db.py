@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-init_db.py — MineGuard sample database initialiser
+init_db.py — Angara sample database initialiser
 ───────────────────────────────────────────────────
 Run once before launching the app to seed a demo project with realistic data:
 
     python init_db.py
 
 What it does:
-  1. Creates the SQLite DB file at data/mineguard.db
+  1. Creates the SQLite DB file at data/angara.db
   2. Initialises all tables (projects, milestones, alert_log, reports)
   3. Seeds one demo project: "Jharia Block-4" (Dhanbad, Jharkhand)
   4. Seeds 5 default milestones with varied statuses (mirrors real demo state)
@@ -29,7 +29,7 @@ SCALABILITY NOTE — Migrating from SQLite → PostgreSQL
 
       # PostgreSQL replacement:
       import psycopg2
-      DSN  = "postgresql://user:password@host:5432/mineguard"
+      DSN  = "postgresql://user:password@host:5432/angara"
       conn = psycopg2.connect(DSN)
 
   Step 3 — Remove SQLite-specific PRAGMAs:
@@ -78,7 +78,7 @@ def _separator(title: str = ""):
 
 
 def main():
-    _separator("MineGuard DB Init")
+    _separator("Angara DB Init")
     print(f"  DB path    : {DB_PATH}")
     print(f"  Archive    : {ARCHIVE_DIR}")
     print(f"  Demo date  : {TODAY}")

@@ -1,7 +1,7 @@
-# ⛏️ MineGuard — Integrated Compliance System
+# ⛏️ Angara — Integrated Compliance System
 
 **Modules 1 & 2 — Coal Mine Regulatory Tracker + Reporting**
-IIT-BHU Minetrack Hackathon · Jindal Steel & Power
+IIT-BHU Angara · Jindal Steel & Power
 
 ---
 
@@ -21,7 +21,7 @@ streamlit run app.py
 ## Structure
 
 ```
-mineguard/
+angara/
 ├── app.py                    ← Entry point (streamlit run app.py)
 ├── init_db.py                ← DB seed script (run once)
 ├── requirements.txt
@@ -49,7 +49,7 @@ mineguard/
 │   └── alerts.py             ← urgency, bottleneck, mock alerts
 │
 └── data/
-    ├── mineguard.db          ← SQLite DB (auto-created)
+    ├── angara.db          ← SQLite DB (auto-created)
     └── reports_archive/      ← Generated PDFs (auto-created)
 ```
 

@@ -1,5 +1,5 @@
 """
-utils/constants.py — Shared constants for MineGuard Module 1
+utils/constants.py — Shared constants for Angara Module 1
 """
 
 import os
@@ -9,7 +9,7 @@ from datetime import date
 TODAY = date(2026, 3, 10)
 
 # ── Database path ────────────────────────────────────────────────
-DB_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "mineguard.db")
+DB_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "angara.db")
 
 # ── Roles ────────────────────────────────────────────────────────
 ROLES = ["Manager", "Officer"]

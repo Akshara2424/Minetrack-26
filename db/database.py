@@ -1,5 +1,5 @@
 """
-db/database.py — SQLite schema + all CRUD for MineGuard Module 1.
+db/database.py — SQLite schema + all CRUD for Angara Module 1.
 
 ER DIAGRAM:
   PROJECTS ──< MILESTONES   (1:N via project_id FK)

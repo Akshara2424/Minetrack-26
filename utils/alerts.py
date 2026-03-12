@@ -67,7 +67,7 @@ def fire_mock_alerts(milestone_id: int, name: str, days: int) -> list[dict]:
     channels = [
         ("WhatsApp", f"[MOCK] Send WhatsApp → Compliance Officer: {body}"),
         ("SMS",      f"[MOCK] Send SMS → +91-XXXXXXXXXX: {body}"),
-        ("Email",    f"[MOCK] Send Email → compliance@mineguard.in | {body}"),
+        ("Email",    f"[MOCK] Send Email → compliance@angara.in | {body}"),
     ]
 
     dispatched = []

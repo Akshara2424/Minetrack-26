@@ -19,7 +19,7 @@ def init_session():
 
 def render_login():
     st.markdown('''<div class="app-header">
-      <h1>⛏️ MineGuard — Compliance Module 1</h1>
+      <h1>⛏️ Angara — Compliance Module 1</h1>
       <p>Regulatory Milestone Tracker · Demo: March 10, 2026</p>
     </div>''', unsafe_allow_html=True)
     st.markdown("### 🔐 Select Role to Continue")
