@@ -265,40 +265,6 @@ with nav_cols[-1]:
 st.markdown("</div></div>", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════
-# APP HEADER (landing page only)
-# ══════════════════════════════════════════════════════════════════
-if st.session_state.current_page == nav_options[0]:
-    # Add some padding
-    st.markdown('<div style="padding:0.5rem 0;"></div>', unsafe_allow_html=True)
-    
-    # Create header with logos
-    header_col1, header_col2, header_col3 = st.columns([0.15, 0.7, 0.15])
-    
-    with header_col1:
-        try:
-            img = st.image("assests/IIT-BHU_Logo.png", use_column_width=True, width=80)
-        except:
-            pass
-    
-    with header_col2:
-        st.markdown(f"""
-        <div style="background:linear-gradient(135deg,#1B3A6B 0%,#2C5282 100%);border-bottom:4px solid #E8A020;padding:1.5rem 2rem;border-radius:0;box-shadow:0 2px 8px rgba(27,58,107,0.2);text-align:center;">
-          <h1 style="color:#FFFFFF;margin:0;font-size:1.6rem;letter-spacing:0.02em;">Angara — Compliance System</h1>
-          <p style="color:rgba(255,255,255,0.75);margin:4px 0 0;font-size:0.8rem;">
-            <span style="background:#FEF6E4;color:#1B3A6B;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.04em;display:inline-block;">{role_icon}</span>
-            &nbsp;·&nbsp; {st.session_state.username}
-            &nbsp;·&nbsp; Ministry of Coal MIS System
-          </p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with header_col3:
-        try:
-            img = st.image("assests/Jindal_Steel_Logo.png", use_column_width=True, width=80)
-        except:
-            pass
-
-# ══════════════════════════════════════════════════════════════════
 # ZIP EXPORT HELPER
 # ══════════════════════════════════════════════════════════════════
 def _build_zip() -> bytes:
