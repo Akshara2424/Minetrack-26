@@ -2,8 +2,8 @@
 components/report_form.py — Module 2: Smart Report Entry Form
 
 Two tabs:
-  📝 Generate Report  — pulls Module 1 DB, config form, PDF gen, archive + download
-  🗂️ Report History   — mirrors dashboard archive with status controls
+Generate Report  — pulls Module 1 DB, config form, PDF gen, archive + download
+Report History   — mirrors dashboard archive with status controls
 """
 
 import os
@@ -35,9 +35,9 @@ REPORT_TYPES = {
     "Delay / Red Flag Report": "Delay_Report",
 }
 STATUS_META = {
-    "Drafted":   ("🟡", "#d97706"),
-    "Submitted": ("🟢", "#16a34a"),
-    "Archived":  ("⚫", "#6b7280"),
+    "Drafted":   ("🟡", "#F57C00"),   # MoC warning orange
+    "Submitted": ("🟢", "#2E7D32"),   # MoC success green
+    "Archived":  ("⚫", "#4A5568"),   # MoC muted text
 }
 
 
@@ -52,7 +52,7 @@ def _archive_pdf(pdf_bytes: bytes, filename: str, report_id: int) -> str:
 
 def _preview(milestones_df: pd.DataFrame):
     st.markdown(
-        '<div class="section-title">📋 Data Preview — Live from Module 1 DB</div>',
+        '<div class="section-title">Data Preview — Live from Module 1 DB</div>',
         unsafe_allow_html=True,
     )
     if milestones_df.empty:
@@ -68,10 +68,10 @@ def _preview(milestones_df: pd.DataFrame):
         if r["status"] != "complete"
         and date.fromisoformat(str(r["target_date"])) < TODAY
     )
-    c1.metric("📋 Total",     total)
-    c2.metric("✅ Completed", done)
-    c3.metric("⚠️ Delayed",   delayed)
-    c4.metric("🔥 Overdue",   overdue)
+    c1.metric("Total",     total)
+    c2.metric("Completed", done)
+    c3.metric("Delayed",   delayed)
+    c4.metric("Overdue",   overdue)
 
     disp = milestones_df[["name","target_date","actual_date","status","notes"]].copy()
     disp.columns = ["Milestone","Target Date","Actual Date","Status","Notes"]
@@ -85,18 +85,13 @@ def render(active_project_id: int = None):
     init_reports_table()
 
     st.markdown("""
-    <div style="background:#161b22;border:1px solid #f0a500;border-radius:8px;
-                padding:10px 16px;margin-bottom:1rem">
-      <span style="color:#f0a500;font-family:'IBM Plex Mono',monospace;font-size:.8rem">
-        📑 MODULE 2 — SMART REPORTING
-      </span>
-      <span style="color:#8b949e;font-size:.74rem;margin-left:1rem">
-        Single-point entry · Pulls Module 1 DB · Auto-archived on generate
-      </span>
+    <div class="module-banner">
+      <span class="banner-tag" MODULE 2 — SMART REPORTING</span>
+      <span class="banner-sub">Single-point entry · Pulls Module 1 DB · Auto-archived on generate</span>
     </div>
     """, unsafe_allow_html=True)
 
-    gen_tab, hist_tab = st.tabs(["📝 Generate Report", "🗂️ Report History"])
+    gen_tab, hist_tab = st.tabs(["Generate Report", "Report History"])
 
     # ════════════════════════════════════════
     # TAB 1 — GENERATE
@@ -155,11 +150,11 @@ def render(active_project_id: int = None):
             if rpt_key == "MIS_Quarterly":
                 st.info("📄 Includes all milestones, summary table, and declaration.")
             elif delayed_count:
-                st.warning(f"🚨 {delayed_count} delay(s) will be flagged with bottleneck analysis.")
+                st.warning(f"{delayed_count} delay(s) will be flagged with bottleneck analysis.")
             else:
-                st.success("✅ No delays — report will confirm clean status.")
+                st.success("No delays — report will confirm clean status.")
 
-            go = st.form_submit_button("⚙️ Generate & Archive PDF",
+            go = st.form_submit_button("Generate & Archive PDF",
                                        type="primary", use_container_width=True)
 
             if go:
@@ -216,7 +211,7 @@ def render(active_project_id: int = None):
             dl_col, mark_col = st.columns([2, 1])
             with dl_col:
                 st.download_button(
-                    label     = f"⬇️ Download {st.session_state['_rf_label']}",
+                    label     = f"⬇Download {st.session_state['_rf_label']}",
                     data      = st.session_state["_rf_pdf"],
                     file_name = st.session_state["_rf_fname"],
                     mime      = "application/pdf",
@@ -225,7 +220,7 @@ def render(active_project_id: int = None):
                     use_container_width=True,
                 )
             with mark_col:
-                if st.button("✅ Mark as Submitted", use_container_width=True,
+                if st.button("Mark as Submitted", use_container_width=True,
                              key="rf_mark"):
                     update_report_status(st.session_state["_rf_rid"], "Submitted")
                     st.success("Marked Submitted.")
@@ -244,7 +239,7 @@ def render(active_project_id: int = None):
             return
 
         t, sub, drft = st.columns(3)
-        t.metric("📄 Total",    len(all_rpts))
+        t.metric("Total",    len(all_rpts))
         sub.metric("✅ Submitted", int((all_rpts["status"] == "Submitted").sum()))
         drft.metric("🟡 Drafted",  int((all_rpts["status"] == "Drafted").sum()))
 
@@ -256,30 +251,21 @@ def render(active_project_id: int = None):
             file_ok = bool(fp) and os.path.exists(str(fp))
 
             st.markdown(f"""
-            <div style="background:#161b22;border:1px solid #30363d;
-                        border-left:4px solid {color};border-radius:8px;
-                        padding:10px 14px;margin-bottom:4px">
-              <div style="display:flex;justify-content:space-between;
-                          flex-wrap:wrap;gap:6px;align-items:center">
+            <div class="report-card" style="border-left:4px solid {color};">
+              <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;align-items:center">
                 <div>
-                  <span style="font-weight:600;color:#e6edf3;font-size:.87rem">
-                    {emoji} {row['report_type'].replace('_',' ')}
-                  </span>
-                  <span style="font-size:.73rem;color:#8b949e;margin-left:8px;
-                               font-family:'IBM Plex Mono',monospace">
+                  <span class="report-card-title">{emoji} {row['report_type'].replace('_',' ')}</span>
+                  <span style="font-size:.73rem;color:#4A5568;margin-left:8px">
                     {row['project_name']} · {row['submission_date']}
                   </span>
                 </div>
-                <span style="background:{color}22;color:{color};
-                             border:1px solid {color};border-radius:20px;
-                             padding:2px 10px;font-size:.7rem;
-                             font-family:'IBM Plex Mono',monospace">
+                <span class="status-chip" style="background:{color}18;color:{color};border-color:{color}">
                   {row['status']}
                 </span>
               </div>
-              <div style="font-size:.7rem;color:#4b5563;margin-top:3px">
+              <div class="report-card-meta">
                 By {row['submitted_by']} · {str(row['created_at'])[:16]}
-                {'· 📁 archived' if file_ok else ''}
+                {'· archived' if file_ok else ''}
               </div>
             </div>
             """, unsafe_allow_html=True)
@@ -288,7 +274,7 @@ def render(active_project_id: int = None):
             with hc1:
                 if file_ok:
                     with open(fp, "rb") as fh:
-                        st.download_button("⬇️ Download", fh.read(),
+                        st.download_button("⬇Download", fh.read(),
                                            file_name=os.path.basename(str(fp)),
                                            mime="application/pdf",
                                            key=f"hdl_{row['id']}",

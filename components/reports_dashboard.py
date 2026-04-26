@@ -8,8 +8,8 @@ Layout
   ├─────────────────────────────────────────────────────┤
   │  Live Milestone Strip (Module 1 read-through)        │
   ├──────────────────────────┬──────────────────────────┤
-  │  ⚡ Quick Generate       │  Report Archive List      │
-  │  (from current state)    │  filters + cards + DL     │
+  │    Quick Generate       │  Report Archive List      │
+  | (from current state)    │  filters + cards + DL     │
   └──────────────────────────┴──────────────────────────┘
 
 Module 1 Integration
@@ -40,13 +40,13 @@ ARCHIVE_DIR = os.path.join(
 
 # ── Shared display constants ──────────────────────────────────────
 STATUS_META = {
-    "Drafted":   {"emoji": "🟡", "color": "#d97706", "bg": "#2d1f00"},
-    "Submitted": {"emoji": "🟢", "color": "#16a34a", "bg": "#001a0a"},
-    "Archived":  {"emoji": "⚫", "color": "#6b7280", "bg": "#1c1c1c"},
+    "Drafted":   {"emoji": "🟡", "color": "#C8950C", "bg": "#FFF8E1"},
+    "Submitted": {"emoji": "🟢", "color": "#003366", "bg": "#E9EFF8"},
+    "Archived":  {"emoji": "⚫", "color": "#CDD4D9", "bg": "#F5F6F7"},
 }
 TYPE_LABEL = {
-    "MIS_Quarterly": "📄 MIS Quarterly",
-    "Delay_Report":  "🚨 Delay Report",
+    "MIS_Quarterly": "MIS Quarterly",
+    "Delay_Report":  "Delay Report",
 }
 DEFAULT_QUARTER = "Q4 FY 2025-26 (Jan–Mar 2026)"
 
@@ -102,14 +102,14 @@ def _generate_pdf(
 
 def _kpi_cards(stats: dict):
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("📑 Reports Generated",  stats["total"])
+    c1.metric("Reports Generated",  stats["total"])
     c2.metric(
-        "🟡 Pending Submissions", stats["drafted"],
+        "Pending Submissions", stats["drafted"],
         delta=f"{stats['drafted']} to submit" if stats["drafted"] else None,
         delta_color="inverse",
     )
-    c3.metric("✅ Submitted",  stats["submitted"])
-    c4.metric("🗄️ Archived",   stats["archived"])
+    c3.metric("Submitted",  stats["submitted"])
+    c4.metric("Archived",   stats["archived"])
 
     # Type breakdown bar
     total = max(stats["total"], 1)
@@ -118,14 +118,14 @@ def _kpi_cards(stats: dict):
 
     st.markdown(f"""
     <div style="margin:.4rem 0 1rem">
-      <div style="font-size:.7rem;color:#8b949e;margin-bottom:4px;
+      <div style="font-size:.7rem;color:#CDD4D9;margin-bottom:4px;
                   font-family:'IBM Plex Mono',monospace;letter-spacing:.05em">
-        BREAKDOWN &nbsp;·&nbsp; 📄 MIS: {stats['mis_count']}
-        &nbsp;|&nbsp; 🚨 Delay: {stats['delay_count']}
+        BREAKDOWN &nbsp;·&nbsp; MIS: {stats['mis_count']}
+        &nbsp;|&nbsp; Delay: {stats['delay_count']}
       </div>
-      <div style="display:flex;height:6px;border-radius:3px;overflow:hidden;background:#30363d">
+      <div style="display:flex;height:6px;border-radius:3px;overflow:hidden;background:#D6DADC">
         <div style="width:{mis_w}%;background:#0284c7"></div>
-        <div style="width:{delay_w}%;background:#dc2626"></div>
+        <div style="width:{delay_w}%;background:#BF382A"></div>
       </div>
     </div>
     """, unsafe_allow_html=True)
@@ -155,14 +155,14 @@ def _milestone_strip(project_id: int):
         info = compute_urgency(td, row["status"])
         with cols[i]:
             st.markdown(f"""
-            <div style="background:#161b22;border:1px solid {info['color']};
+            <div style="background:#E9EFF8;border:1px solid {info['color']};
                         border-radius:6px;padding:8px 6px;text-align:center;">
               <div style="font-size:1.1rem">{info['emoji']}</div>
-              <div style="font-size:.63rem;color:#e6edf3;font-weight:600;
+              <div style="font-size:.63rem;color:#000000;font-weight:600;
                           margin-top:2px;line-height:1.3">
                 {row['name'][:20]}
               </div>
-              <div style="font-size:.6rem;color:#8b949e;margin-top:2px;
+              <div style="font-size:.6rem;color:#CDD4D9;margin-top:2px;
                           font-family:'IBM Plex Mono',monospace">
                 {td.strftime('%d %b')}
               </div>
@@ -204,18 +204,18 @@ def _quick_generate_section(project_id: int):
         for _, r in ms_df.iterrows()
     ) if not ms_df.empty else False
 
-    border_col  = "#dc2626" if has_delays else "#16a34a"
-    suggestion  = "🚨 Delays detected — Delay Report recommended" if has_delays \
-                  else "✅ On track — MIS Quarterly recommended"
+    border_col  = "#BF382A" if has_delays else "#003366"
+    suggestion  = "Delays detected — Delay Report recommended" if has_delays \
+                  else "On track — MIS Quarterly recommended"
 
     st.markdown(f"""
-    <div style="background:#161b22;border:1px solid {border_col};
+    <div style="background:#E9EFF8;border:1px solid {border_col};
                 border-radius:8px;padding:12px 16px;margin-bottom:.75rem">
-      <div style="font-size:.82rem;font-weight:600;color:#e6edf3">
-        ⚡ Generate Report from Current Milestone
+      <div style="font-size:.82rem;font-weight:600;color:#000000">
+        Generate Report from Current Milestone
       </div>
-      <div style="font-size:.74rem;color:#8b949e;margin-top:4px">
-        Project: <strong style="color:#e6edf3">{pname}</strong>
+      <div style="font-size:.74rem;color:#CDD4D9;margin-top:4px">
+        Project: <strong style="color:#000000">{pname}</strong>
         &nbsp;·&nbsp; {suggestion}
       </div>
     </div>
@@ -224,12 +224,12 @@ def _quick_generate_section(project_id: int):
     col_mis, col_delay = st.columns(2)
 
     with col_mis:
-        if st.button("📄 MIS Quarterly", use_container_width=True, key="qg_mis"):
+        if st.button("MIS Quarterly", use_container_width=True, key="qg_mis"):
             _do_quick_gen("MIS_Quarterly", pname, project_id, ploc, pstart, ms_df, by)
 
     with col_delay:
         if st.button(
-            "🚨 Delay Report", use_container_width=True, key="qg_delay",
+            "Delay Report", use_container_width=True, key="qg_delay",
             type="primary" if has_delays else "secondary",
         ):
             _do_quick_gen("Delay_Report", pname, project_id, ploc, pstart, ms_df, by)
@@ -237,7 +237,7 @@ def _quick_generate_section(project_id: int):
     # Show download if a quick PDF is ready
     if st.session_state.get("_qpdf_bytes"):
         st.download_button(
-            label     = f"⬇️ Download {st.session_state['_qpdf_label']}",
+            label     = f"⬇Download {st.session_state['_qpdf_label']}",
             data      = st.session_state["_qpdf_bytes"],
             file_name = st.session_state["_qpdf_fname"],
             mime      = "application/pdf",
@@ -267,10 +267,10 @@ def _do_quick_gen(rtype, pname, pid, ploc, pstart, ms_df, by):
             st.session_state["_qpdf_bytes"] = pdf
             st.session_state["_qpdf_fname"] = fname
             st.session_state["_qpdf_label"] = rtype.replace("_", " ")
-            st.success(f"✅ {rtype.replace('_',' ')} generated & archived.")
+            st.success(f"{rtype.replace('_',' ')} generated & archived.")
             st.rerun()
         except Exception as ex:
-            st.error(f"❌ {ex}")
+            st.error(f" {ex}")
 
 
 # ══════════════════════════════════════════════════════════════════
@@ -313,25 +313,25 @@ def _report_list(df: pd.DataFrame):
 
         # Card
         st.markdown(f"""
-        <div style="background:#161b22;border:1px solid #30363d;
+        <div style="background:#E9EFF8;border:1px solid #D6DADC;
                     border-left:4px solid {meta['color']};border-radius:8px;
                     padding:12px 16px;margin-bottom:4px">
           <div style="display:flex;justify-content:space-between;
                       align-items:flex-start;flex-wrap:wrap;gap:8px">
             <div style="flex:1;min-width:180px">
-              <div style="font-weight:600;color:#e6edf3;font-size:.88rem">
+              <div style="font-weight:600;color:#000000;font-size:.88rem">
                 {rtype}
               </div>
-              <div style="font-size:.72rem;color:#8b949e;margin-top:3px;
+              <div style="font-size:.72rem;color:#CDD4D9;margin-top:3px;
                           font-family:'IBM Plex Mono',monospace">
                 {row['project_name']}
                 &nbsp;·&nbsp; {row['quarter']}
                 &nbsp;·&nbsp; {row['submission_date']}
               </div>
-              <div style="font-size:.68rem;color:#4b5563;margin-top:2px">
+              <div style="font-size:.68rem;color:#CDD4D9;margin-top:2px">
                 By {row['submitted_by']}
                 &nbsp;·&nbsp; Generated {str(row['created_at'])[:16]}
-                {'&nbsp;·&nbsp; 📁 local archive' if file_ok else ''}
+                {'&nbsp;·&nbsp; local archive' if file_ok else ''}
               </div>
             </div>
             <span style="background:{meta['bg']};color:{meta['color']};
@@ -360,7 +360,7 @@ def _report_list(df: pd.DataFrame):
                     use_container_width=True,
                 )
             else:
-                st.caption("📄 Not in local archive")
+                st.caption("Not in local archive")
 
         with cb:
             opts    = ["Drafted", "Submitted", "Archived"]
@@ -375,12 +375,12 @@ def _report_list(df: pd.DataFrame):
 
         with cc:
             if row["status"] == "Drafted":
-                if st.button("✅ Mark Submitted", key=f"ms_{row['id']}",
+                if st.button("Mark Submitted", key=f"ms_{row['id']}",
                              use_container_width=True):
                     update_report_status(row["id"], "Submitted")
                     st.rerun()
             elif row["status"] == "Submitted":
-                if st.button("🗄️ Archive", key=f"arc_{row['id']}",
+                if st.button("Archive", key=f"arc_{row['id']}",
                              use_container_width=True):
                     update_report_status(row["id"], "Archived")
                     st.rerun()
@@ -416,12 +416,12 @@ def render(active_project_id: int = None):
 
     # ── Page header ──────────────────────────────────────────────
     st.markdown("""
-    <div style="background:#161b22;border:1px solid #f0a500;border-radius:8px;
+    <div style="background:#E9EFF8;border:1px solid #003366;border-radius:8px;
                 padding:10px 16px;margin-bottom:1rem">
-      <span style="color:#f0a500;font-family:'IBM Plex Mono',monospace;font-size:.8rem">
-        🗂️ REPORTS DASHBOARD — MODULE 2
+      <span style="color:#003366;font-family:'IBM Plex Mono',monospace;font-size:.8rem">
+        REPORTS DASHBOARD — MODULE 2
       </span>
-      <span style="color:#8b949e;font-size:.74rem;margin-left:1rem">
+      <span style="color:#CDD4D9;font-size:.74rem;margin-left:1rem">
         Submission tracking · Auto-archive · Module 1 integration
       </span>
     </div>
@@ -450,7 +450,7 @@ def render(active_project_id: int = None):
 
     with right:
         st.markdown(
-            '<div class="section-title">📂 Report Archive</div>',
+            '<div class="section-title">Report Archive</div>',
             unsafe_allow_html=True,
         )
         all_reports = get_reports()
@@ -465,10 +465,10 @@ def render(active_project_id: int = None):
 
     st.markdown("---")
     st.markdown(f"""
-    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+    <div style="background:#E9EFF8;border:1px solid #D6DADC;border-radius:8px;
                 padding:8px 14px">
-      <span style="font-size:.72rem;color:#8b949e;font-family:'IBM Plex Mono',monospace">
-        📁 Archive folder: <code style="color:#f0a500">{ARCHIVE_DIR}</code>
+      <span style="font-size:.72rem;color:#CDD4D9;font-family:'IBM Plex Mono',monospace">
+        Archive folder: <code style="color:#C8950C">{ARCHIVE_DIR}</code>
         &nbsp;·&nbsp; {n_files} PDF(s) stored locally
       </span>
     </div>

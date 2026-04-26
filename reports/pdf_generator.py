@@ -1,5 +1,5 @@
 """
-reports/pdf_generator.py — ReportLab PDF generation for Angara Module 2
+reports/pdf_generator.py — ReportLab PDF generation for MineGuard Module 2
 
 Generates two MoC-style report types:
   1. MIS Quarterly Report  — full milestone status table
@@ -32,16 +32,17 @@ RIGHT_MARGIN = 18 * mm
 TOP_MARGIN   = 20 * mm
 BOT_MARGIN   = 20 * mm
 
-# ── MoC colour palette ───────────────────────────────────────────
-MOC_NAVY   = colors.HexColor("#003366")
-MOC_GOLD   = colors.HexColor("#C8960C")
-MOC_LIGHT  = colors.HexColor("#EAF0F8")
+# ── MoC colour palette (aligned with Streamlit light theme) ─────
+MOC_NAVY   = colors.HexColor("#1B3A6B")   # primary navy
+MOC_GOLD   = colors.HexColor("#E8A020")   # accent saffron/gold
+MOC_LIGHT  = colors.HexColor("#EEF2F7")   # light blue-grey
 MOC_WHITE  = colors.white
-MOC_RED    = colors.HexColor("#C0392B")
-MOC_GREEN  = colors.HexColor("#1E8449")
-MOC_YELLOW = colors.HexColor("#D4AC0D")
-MOC_GREY   = colors.HexColor("#7F8C8D")
-MOC_BORDER = colors.HexColor("#BDC3C7")
+MOC_RED    = colors.HexColor("#C62828")   # error red
+MOC_GREEN  = colors.HexColor("#2E7D32")   # success green
+MOC_YELLOW = colors.HexColor("#F57C00")   # warning orange
+MOC_GREY   = colors.HexColor("#4A5568")   # muted text
+MOC_BORDER = colors.HexColor("#CBD5E0")
+MOC_HEADER = colors.HexColor("#2C5282")   # table header bg
 
 # ── Status → colour map ──────────────────────────────────────────
 STATUS_COLOR = {
@@ -127,7 +128,8 @@ def _header_block(styles: dict, title: str, subtitle: str, report_no: str) -> li
         colWidths=["60%", "40%"],
     )
     header_table.setStyle(TableStyle([
-        ("BACKGROUND",  (0, 0), (-1, -1), MOC_NAVY),
+        ("BACKGROUND",  (0, 0), (0, -1), MOC_NAVY),
+        ("BACKGROUND",  (1, 0), (1, -1), MOC_HEADER),
         ("VALIGN",      (0, 0), (-1, -1), "MIDDLE"),
         ("TOPPADDING",  (0, 0), (-1, -1), 10),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
@@ -174,7 +176,7 @@ def _footer_block(styles: dict, report_type: str) -> list:
         HRFlowable(width="100%", thickness=0.5, color=MOC_BORDER),
         Spacer(1, 4),
         Paragraph(
-            f"Angara Compliance System · {report_type} · "
+            f"MineGuard Compliance System · {report_type} · "
             f"Generated: {datetime.now().strftime('%d %b %Y %H:%M')} · "
             "Ministry of Coal — Internal Use Only",
             styles["footer"],
@@ -275,7 +277,7 @@ def generate_mis_quarterly(
     ]
     summary_table = Table(summary_data, colWidths=["17%"] * 6)
     summary_table.setStyle(TableStyle([
-        ("BACKGROUND",    (0, 0), (-1, 0), MOC_NAVY),
+        ("BACKGROUND",    (0, 0), (-1, 0), MOC_HEADER),
         ("TEXTCOLOR",     (0, 0), (-1, 0), MOC_WHITE),
         ("BACKGROUND",    (0, 1), (-1, 1), MOC_LIGHT),
         ("ALIGN",         (0, 0), (-1, -1), "CENTER"),
@@ -318,7 +320,7 @@ def generate_mis_quarterly(
     )
 
     row_styles = [
-        ("BACKGROUND",    (0, 0), (-1, 0), MOC_NAVY),
+        ("BACKGROUND",    (0, 0), (-1, 0), MOC_HEADER),
         ("TEXTCOLOR",     (0, 0), (-1, 0), MOC_WHITE),
         ("VALIGN",        (0, 0), (-1, -1), "TOP"),
         ("ALIGN",         (0, 0), (0, -1), "CENTER"),

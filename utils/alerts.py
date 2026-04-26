@@ -23,25 +23,25 @@ def compute_urgency(target_date: date, status: str) -> dict:
     if status == "complete":
         return {
             "days": 0, "level": "complete",
-            "color": "#16a34a", "label": "COMPLETE", "emoji": "✅",
+            "color": "#003366", "label": "COMPLETE", "emoji": "✅",
         }
 
     days = (target_date - TODAY).days
 
     if days > 7:
         return {
-            "days": days, "level": "green", "color": "#16a34a",
+            "days": days, "level": "green", "color": "#003366",
             "label": f"{days}d remaining", "emoji": "🟢",
         }
     elif 3 <= days <= 7:
         return {
-            "days": days, "level": "yellow", "color": "#d97706",
+            "days": days, "level": "yellow", "color": "#C8950C",
             "label": f"{days}d — Alert!", "emoji": "🟡",
         }
     else:
         label = f"OVERDUE {abs(days)}d" if days < 0 else f"{days}d — CRITICAL"
         return {
-            "days": days, "level": "red", "color": "#dc2626",
+            "days": days, "level": "red", "color": "#BF382A",
             "label": label, "emoji": "🔴",
         }
 
@@ -58,11 +58,11 @@ def fire_mock_alerts(milestone_id: int, name: str, days: int) -> list[dict]:
         List of dicts: [{channel, message}, ...]
     """
     if days < 0:
-        body = f"🚨 OVERDUE {abs(days)}d: '{name}' — Immediate action required."
+        body = f"OVERDUE {abs(days)}d: '{name}' — Immediate action required."
     elif days <= 3:
-        body = f"⚠️  CRITICAL: '{name}' due in {days} day(s). Attach docs & escalate NOW."
+        body = f"CRITICAL: '{name}' due in {days} day(s). Attach docs & escalate NOW."
     else:
-        body = f"📅 REMINDER: '{name}' due in {days} day(s). Verify readiness."
+        body = f"REMINDER: '{name}' due in {days} day(s). Verify readiness."
 
     channels = [
         ("WhatsApp", f"[MOCK] Send WhatsApp → Compliance Officer: {body}"),

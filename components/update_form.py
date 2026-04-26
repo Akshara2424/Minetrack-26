@@ -23,13 +23,13 @@ def render(milestones_df, project_start):
                     actual_val = date.fromisoformat(row["actual_date"]) if row["actual_date"] else None
                     new_actual = st.date_input("Actual Completion Date (optional)", value=actual_val, key=f"a_{row['id']}")
                 new_notes = st.text_area("Notes", value=row["notes"] or "", placeholder="Observations, blockers, references…", key=f"n_{row['id']}", height=75)
-                if st.form_submit_button("💾 Save Changes", use_container_width=True):
+                if st.form_submit_button("Save Changes", use_container_width=True):
                     errors = validate_actual_date(new_actual, project_start) if new_actual else []
                     if errors:
                         for e in errors: st.error(f"❌ {e}")
                     else:
                         try:
                             update_milestone(row["id"], new_status, new_notes, new_actual.isoformat() if new_actual else None, role)
-                            st.success(f"✅ '{row['name']}' updated by {role}: {st.session_state.username}")
+                            st.success(f" '{row['name']}' updated by {role}: {st.session_state.username}")
                             st.rerun()
-                        except Exception as ex: st.error(f"❌ Database error: {ex}")
+                        except Exception as ex: st.error(f"Database error: {ex}")
