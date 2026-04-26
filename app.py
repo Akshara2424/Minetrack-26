@@ -87,7 +87,8 @@ html,body,[class*="css"],.stApp{background-color:var(--bg-page)!important;color:
 .stAppViewContainer {padding: 0 !important; margin: 0 !important;}
 .stMainBlockContainer {padding: 0 !important; margin: 0 !important; max-width: 100% !important;}
 [data-testid="stAppViewContainer"] {padding: 0 !important;}
-h1,h2,h3{color:var(--navy)!important;font-weight:700!important}
+h1,h2,h3{color:var(--navy)!important;font-weight:700!important;padding:4px 6px!important}
+h1,h2,h3,p,span{padding:4px 6px!important}
 
 /* SIDEBAR */
 [data-testid="stSidebar"]{background-color:var(--navy)!important;border-right:3px solid var(--saffron)!important}
@@ -126,7 +127,7 @@ h1,h2,h3{color:var(--navy)!important;font-weight:700!important}
 /* FORM INPUTS */
 .stTextInput>div>div>input,.stTextArea>div>div>textarea,.stSelectbox>div>div,.stMultiSelect>div>div,.stDateInput>div>div>input{border:1px solid var(--border)!important;border-radius:5px!important;color:var(--text)!important;background-color:var(--bg-page)!important}
 .stTextInput>div>div>input:focus,.stTextArea>div>div>textarea:focus{border-color:var(--navy)!important;box-shadow:0 0 0 2px rgba(27,58,107,0.15)!important}
-.stTextInput label,.stTextArea label,.stSelectbox label,.stDateInput label,.stMultiSelect label,.stRadio label,.stCheckbox label{color:var(--text-muted)!important;font-weight:600!important;font-size:0.82rem!important}
+.stTextInput label,.stTextArea label,.stSelectbox label,.stDateInput label,.stMultiSelect label,.stRadio label,.stCheckbox label,.stSlider label{color:var(--text-muted)!important;font-weight:600!important;font-size:0.82rem!important;padding:4px 6px!important}
 
 /* UTILITY CLASSES */
 .section-title{color:var(--navy);font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border-bottom:2px solid var(--border-light);padding-bottom:5px;margin:1.4rem 0 0.8rem}
