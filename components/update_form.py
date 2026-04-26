@@ -14,22 +14,27 @@ def render(milestones_df, project_start):
     for _, row in milestones_df.iterrows():
         td = date.fromisoformat(row["target_date"])
         info = compute_urgency(td, row["status"])
-        with st.expander(f"{info['emoji']}  {row['name']}  — {info['label']}"):
+        with st.expander(f"{row['name']}  — {info['label']}"):
             with st.form(f"upd_{row['id']}", clear_on_submit=False):
                 ca, cb = st.columns(2)
                 with ca:
                     new_status = st.selectbox("Status", STATUS_OPTIONS, index=STATUS_OPTIONS.index(row["status"]), key=f"s_{row['id']}")
                 with cb:
-                    actual_val = date.fromisoformat(row["actual_date"]) if row["actual_date"] else None
+                    actual_val = None
+                    if row["actual_date"] and isinstance(row["actual_date"], str):
+                        try:
+                            actual_val = date.fromisoformat(row["actual_date"])
+                        except (ValueError, TypeError):
+                            actual_val = None
                     new_actual = st.date_input("Actual Completion Date (optional)", value=actual_val, key=f"a_{row['id']}")
                 new_notes = st.text_area("Notes", value=row["notes"] or "", placeholder="Observations, blockers, references…", key=f"n_{row['id']}", height=75)
                 if st.form_submit_button("Save Changes", use_container_width=True):
                     errors = validate_actual_date(new_actual, project_start) if new_actual else []
                     if errors:
-                        for e in errors: st.error(f"❌ {e}")
+                        for e in errors: st.error(f"Error: {e}")
                     else:
                         try:
                             update_milestone(row["id"], new_status, new_notes, new_actual.isoformat() if new_actual else None, role)
-                            st.success(f" '{row['name']}' updated by {role}: {st.session_state.username}")
+                            st.success(f"'{row['name']}' updated by {role}: {st.session_state.username}")
                             st.rerun()
                         except Exception as ex: st.error(f"Database error: {ex}")
