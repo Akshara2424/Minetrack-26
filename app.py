@@ -251,7 +251,7 @@ with hdr_col3:
 # ══════════════════════════════════════════════════════════════════
 # NAVIGATION BAR
 # ══════════════════════════════════════════════════════════════════
-st.markdown('<div style="margin-top: 0px; background-color: #FFFFFF; margin-left: -2rem; margin-right: -2rem; padding: 0px; display: flex; gap: 0; align-items: stretch; border-bottom: 3px solid #E2E8F0; flex-wrap: nowrap;">', unsafe_allow_html=True)
+st.markdown('<div style="margin-top: 1rem; background-color: #FFFFFF; margin-left: -2rem; margin-right: -2rem; padding: 0px; display: flex; gap: 0; align-items: stretch; border-bottom: 3px solid #E2E8F0; flex-wrap: nowrap;">', unsafe_allow_html=True)
 nav_cols = st.columns([1] * len(nav_options))
 for idx, page_option in enumerate(nav_options):
     with nav_cols[idx]:
@@ -265,10 +265,8 @@ st.markdown('</div>', unsafe_allow_html=True)
 # ══════════════════════════════════════════════════════════════════
 # APP HEADER (dashboard & pages)
 # ══════════════════════════════════════════════════════════════════
-st.markdown('<div style="margin-bottom: 2.5rem;"></div>', unsafe_allow_html=True)
-
 st.markdown(f"""
-<div style="background:linear-gradient(135deg,#1B3A6B 0%,#2C5282 100%);border-bottom:4px solid #E8A020;padding:1.5rem 2rem;border-radius:0;box-shadow:0 2px 8px rgba(27,58,107,0.2);text-align:center;margin-bottom:0;">
+<div style="background:linear-gradient(135deg,#1B3A6B 0%,#2C5282 100%);border-bottom:4px solid #E8A020;padding:1.5rem 2rem;border-radius:0;box-shadow:0 2px 8px rgba(27,58,107,0.2);text-align:center;margin-top:1rem;margin-bottom:2.5rem;">
   <h1 style="color:#FFFFFF;margin:0;font-size:1.6rem;letter-spacing:0.02em;">Angara — Compliance System</h1>
   <p style="color:#E8E8E8;margin:4px 0 0;font-size:0.8rem;">
     <span style="background:#FEF6E4;color:#1B3A6B;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.04em;display:inline-block;">{role_icon}</span>
@@ -277,10 +275,6 @@ st.markdown(f"""
   </p>
 </div>
 """, unsafe_allow_html=True)
-
-# ══════════════════════════════════════════════════════════════════
-# ZIP EXPORT HELPER
-# ══════════════════════════════════════════════════════════════════
 def _build_zip() -> bytes:
     buf   = io.BytesIO()
     count = 0
@@ -366,7 +360,12 @@ if projects_df.empty:
     # ══════════════════════════════════════════════════════════════════
     # DHANBAD MINES HERO SECTION - NO PROJECTS
     # ══════════════════════════════════════════════════════════════════
-    col_create, col_image, col_caption = st.columns([0.95, 1.35, 0.15])
+    st.markdown('<div style="margin-top: 2rem;"></div>', unsafe_allow_html=True)
+    col_left_filler, col_create, col_image, col_caption, col_right_filler = st.columns([0.05, 0.95, 1.35, 0.15, 0.05])
+    
+    # LEFT FILLER
+    with col_left_filler:
+        pass
     
     # LEFT COLUMN - CREATE PROJECT BUTTON
     with col_create:
@@ -405,6 +404,10 @@ if projects_df.empty:
             </div>
         </div>
         """, unsafe_allow_html=True)
+    
+    # RIGHT FILLER
+    with col_right_filler:
+        pass
     
     # FORM SECTION - BELOW HERO (outside the column structure)
     if st.session_state.get("show_create_modal"):
