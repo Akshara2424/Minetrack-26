@@ -74,11 +74,7 @@ def render_login():
     st.markdown("""
     <div class="footer-container">
       <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-        
-        <!-- Top Row -->
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 30px; margin-bottom: 20px;">
-          
-          <!-- Left: Ministry Logos + Description -->
           <div style="display: flex; align-items: flex-start; gap: 15px; max-width: 350px;">
             <div style="width: 50px; min-width: 50px;">
               <div style="color: #E8A020; font-weight: bold; text-align: center;">IIT-BHU</div>
@@ -92,8 +88,6 @@ def render_login():
               </small>
             </div>
           </div>
-
-          <!-- Center: Important Links -->
           <div>
             <strong style="color: #E8A020;">Important Links</strong><br>
             <small style="color: #CBD5E0; line-height: 1.8;">
@@ -101,8 +95,6 @@ def render_login():
               Generate Reports &nbsp; | &nbsp; Update Milestones
             </small>
           </div>
-
-          <!-- Center: Useful Links -->
           <div>
             <strong style="color: #E8A020;">Useful Links</strong><br>
             <small style="color: #CBD5E0; line-height: 1.8;">
@@ -110,8 +102,6 @@ def render_login():
               Support &nbsp; | &nbsp; Feedback
             </small>
           </div>
-
-          <!-- Right: Partner + Powered By -->
           <div style="text-align: right;">
             <strong style="color: #E8A020;">Ministry Partners</strong><br>
             <small style="color: #CBD5E0; line-height: 1.8;">
@@ -123,8 +113,6 @@ def render_login():
             </div>
           </div>
         </div>
-
-        <!-- Bottom Bar -->
         <div style="border-top: 1px solid #334155; padding-top: 15px; text-align: center; font-size: 12px; color: #CBD5E0;">
           © 2026 - ANGARA @ All rights reserved | Ministry of Coal<br>
           <small>Regulatory Milestone Tracker & Compliance Reporting System | IIT-BHU Hackathon Submission</small>
