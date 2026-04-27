@@ -117,13 +117,19 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 [data-testid="metric-container"] [data-testid="stMetricValue"]{color:var(--navy)!important;font-size:1.7rem!important;font-weight:700!important}
 [data-testid="metric-container"] [data-testid="stMetricDelta"]{color:var(--success)!important}
 
-/* BUTTONS — primary navy with saffron override for active nav */
+/* BUTTONS — default navy with outline style for nav bar */
 .stButton>button{background-color:var(--navy)!important;color:#FFFFFF!important;border:1px solid var(--navy)!important;border-radius:5px!important;font-weight:600!important}
 .stButton>button:hover{background-color:var(--navy-dark)!important;border-color:var(--navy-dark)!important}
-.stButton>button[kind="primary"]{background-color:var(--saffron)!important;color:var(--navy)!important;border:1px solid var(--saffron)!important;font-weight:700!important}
-.stButton>button[kind="primary"]:hover{background-color:var(--saffron-bdr)!important}
-.stButton>button[kind="secondary"]{background-color:#334155!important;color:#CBD5E0!important;border:1px solid #556575!important}
-.stButton>button[kind="secondary"]:hover{background-color:#445566!important;border-color:var(--saffron)!important;color:var(--saffron)!important}
+.stButton>button[kind="primary"]{background-color:var(--navy)!important;color:#FFFFFF!important;border:1px solid var(--navy)!important;font-weight:700!important}
+.stButton>button[kind="primary"]:hover{background-color:var(--navy-dark)!important;border-color:var(--navy-dark)!important}
+.stButton>button[kind="secondary"]{background-color:#FFFFFF!important;color:var(--navy)!important;border:1px solid var(--navy)!important;border-bottom:3px solid transparent!important;border-radius:4px!important;font-weight:600!important}
+.stButton>button[kind="secondary"]:hover{background-color:#F7FAFC!important;border-color:var(--navy)!important;color:var(--navy)!important}
+
+/* NAV BAR SPECIFIC STYLES */
+[data-testid="column"] .stButton>button[kind="secondary"]{background-color:#FFFFFF!important;color:var(--navy)!important;border:1px solid var(--navy)!important;border-bottom:3px solid transparent!important}
+[data-testid="column"] .stButton>button[kind="secondary"]:hover{background-color:#F7FAFC!important}
+[data-testid="column"] .stButton>button[kind="primary"]{background-color:var(--navy)!important;color:#FFFFFF!important;border:1px solid var(--navy)!important;border-bottom:3px solid var(--saffron)!important}
+[data-testid="column"] .stButton>button[kind="primary"]:hover{background-color:var(--navy-dark)!important;border-bottom:3px solid var(--saffron)!important}
 
 /* TABS */
 [data-testid="stTabs"] [data-baseweb="tab-list"]{background-color:var(--bg-alt)!important;border-bottom:2px solid var(--border)!important}
@@ -245,7 +251,7 @@ with hdr_col3:
 # ══════════════════════════════════════════════════════════════════
 # NAVIGATION BAR
 # ══════════════════════════════════════════════════════════════════
-st.markdown('<div style="margin-top: 8px; background-color: #1B3A6B; margin-left: -2rem; margin-right: -2rem; padding: 12px 20px; display: flex; gap: 6px; align-items: center;">', unsafe_allow_html=True)
+st.markdown('<div style="margin-top: 8px; background-color: #FFFFFF; margin-left: -2rem; margin-right: -2rem; padding: 12px 20px; display: flex; gap: 6px; align-items: center; border-bottom: 2px solid #E2E8F0;">', unsafe_allow_html=True)
 
 nav_cols = st.columns([1.2] * len(nav_options) + [1])
 for idx, page_option in enumerate(nav_options):
@@ -257,7 +263,7 @@ for idx, page_option in enumerate(nav_options):
 
 with nav_cols[-1]:
     st.markdown(
-        f'<div style="color: #CBD5E0; font-size: 0.85rem; font-weight: 600; text-align: right;">{role_icon}</div>',
+        f'<div style=\"color: var(--navy); font-size: 0.85rem; font-weight: 600; text-align: right;\">{role_icon}</div>',
         unsafe_allow_html=True,
     )
 
