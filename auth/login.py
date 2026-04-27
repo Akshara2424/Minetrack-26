@@ -24,25 +24,25 @@ def render_login():
     except:
         st.warning("Header image not found")
     
-    st.markdown("### Select Role to Continue")
-    st.markdown("In production this would be JWT auth. For demo, choose your role below.")
-    col1, col2, col3 = st.columns([1, 1, 2])
+    # Form fields
+    col1, col2 = st.columns(2)
     with col1:
         username = st.text_input("Name / ID", placeholder="e.g. Rajesh Kumar", key="login_name")
     with col2:
         role = st.selectbox("Role", ["— select —"] + ROLES, key="login_role")
-    with col3:
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Enter App", type="primary", use_container_width=True):
-            if role == "— select —":
-                st.error("Please select a role.")
-            elif not username.strip():
-                st.error("Please enter your name or ID.")
-            else:
-                st.session_state.logged_in = True
-                st.session_state.role = role
-                st.session_state.username = username.strip()
-                st.rerun()
+    
+    # Enter App button below
+    if st.button("Enter App", type="primary", use_container_width=True):
+        if role == "— select —":
+            st.error("Please select a role.")
+        elif not username.strip():
+            st.error("Please enter your name or ID.")
+        else:
+            st.session_state.logged_in = True
+            st.session_state.role = role
+            st.session_state.username = username.strip()
+            st.rerun()
+    
     st.markdown("---")
     st.markdown('''<div class="info-card">
       <div class="section-title">Role Permissions</div>
