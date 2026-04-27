@@ -466,6 +466,7 @@ if not pid:
       <p style="color:#4A5568;font-size:0.95rem;">Use the selector above to get started.</p>
     </div>
     """, unsafe_allow_html=True)
+    render_footer()
     st.stop()
 
 projects_df   = get_projects()
