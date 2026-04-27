@@ -302,7 +302,7 @@ def _build_zip() -> bytes:
 def render_footer():
     """Render government-style footer with project branding."""
     st.markdown("""
-    <footer style="background-color: #1B3A6B; color: #ffffff; padding: 30px 0; font-size: 13px; border-top: 4px solid #E8A020; margin-top: 40px;">
+    <div style="background-color: #1B3A6B; color: #ffffff; padding: 30px 20px; font-size: 13px; border-top: 4px solid #E8A020; margin-top: 40px; margin-left: -100vw; margin-right: -100vw; padding-left: calc(100vw - 100%); padding-right: calc(100vw - 100%); width: 100vw;">
       <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
         
         <!-- Top Row -->
@@ -310,7 +310,9 @@ def render_footer():
           
           <!-- Left: Ministry Logos + Description -->
           <div style="display: flex; align-items: flex-start; gap: 15px; max-width: 350px;">
-            <img src="assests/IIT-BHU_Logo.png" alt="IIT-BHU" style="width: 50px; height: 50px; object-fit: contain;">
+            <div style="width: 50px; min-width: 50px;">
+              <div style="color: #E8A020; font-weight: bold; text-align: center;">IIT-BHU</div>
+            </div>
             <div>
               <strong style="color: #E8A020;">ANGARA</strong><br>
               <small style="line-height: 1.4; color: #CBD5E0;">
@@ -346,8 +348,8 @@ def render_footer():
               Ministry of Coal<br>
               IIT (BHU) Varanasi
             </small>
-            <div style="margin-top: 15px;">
-              <img src="assests/Jindal_Steel_Logo.png" alt="Jindal Steel" style="width: 100px; height: auto; object-fit: contain; opacity: 0.9;">
+            <div style="margin-top: 15px; font-weight: bold; color: #E8A020;">
+              JINDAL STEEL
             </div>
           </div>
         </div>
@@ -358,7 +360,7 @@ def render_footer():
           <small>Regulatory Milestone Tracker & Compliance Reporting System | IIT-BHU Hackathon Submission</small>
         </div>
       </div>
-    </footer>
+    </div>
     """, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════
