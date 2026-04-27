@@ -72,16 +72,6 @@ def render_login():
     
     # Footer
     st.markdown("""
-    <style>
-    .footer-container {
-        background-color: #1B3A6B;
-        color: #ffffff;
-        padding: 30px 20px;
-        font-size: 13px;
-        border-top: 4px solid #E8A020;
-        margin-top: 40px;
-    }
-    </style>
     <div class="footer-container">
       <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
         
