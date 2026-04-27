@@ -76,8 +76,9 @@ def render_login():
       <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 30px; margin-bottom: 20px;">
           <div style="display: flex; align-items: flex-start; gap: 15px; max-width: 350px;">
-            <div style="width: 50px; min-width: 50px;">
-              <div style="color: #E8A020; font-weight: bold; text-align: center;">IIT-BHU</div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <img src="assests/IIT-BHU_Logo.png" alt="IIT-BHU" style="width: 45px; height: 45px; object-fit: contain;">
+              <img src="assests/Jindal_Steel_Logo.png" alt="Jindal Steel" style="width: 50px; height: 40px; object-fit: contain;">
             </div>
             <div>
               <strong style="color: #E8A020;">ANGARA</strong><br>
@@ -108,13 +109,10 @@ def render_login():
               Ministry of Coal<br>
               IIT (BHU) Varanasi
             </small>
-            <div style="margin-top: 15px; font-weight: bold; color: #E8A020;">
-              JINDAL STEEL
-            </div>
           </div>
         </div>
         <div style="border-top: 1px solid #334155; padding-top: 15px; text-align: center; font-size: 12px; color: #CBD5E0;">
-          © 2026 - ANGARA @ All rights reserved | Ministry of Coal<br>
+          © 2026 - ANGARA @ All rights reserved | Ministry of Coal | Team Cupcakes<br>
           <small>Regulatory Milestone Tracker & Compliance Reporting System | IIT-BHU Hackathon Submission</small>
         </div>
       </div>
