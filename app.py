@@ -117,25 +117,18 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 [data-testid="metric-container"] [data-testid="stMetricValue"]{color:var(--navy)!important;font-size:1.7rem!important;font-weight:700!important}
 [data-testid="metric-container"] [data-testid="stMetricDelta"]{color:var(--success)!important}
 
-/* BUTTONS — primary navy */
-.stButton>button{background-color:var(--navy)!important;color:#FFFFFF!important;border:1px solid var(--navy)!important;border-radius:5px!important;font-weight:600!important;transition:background 0.15s,box-shadow 0.15s!important}
-.stButton>button:hover{background-color:var(--navy-dark)!important;border-color:var(--navy-dark)!important;box-shadow:0 2px 6px rgba(27,58,107,0.25)!important}
-.stButton>button[kind="secondary"]{background-color:var(--bg-alt)!important;color:var(--navy)!important;border:1px solid var(--border)!important}
-.stButton>button[kind="secondary"]:hover{background-color:#dce5f0!important;border-color:var(--navy)!important}
-.stDownloadButton>button{background-color:var(--navy)!important;color:#FFFFFF!important;border:1px solid var(--navy)!important;border-radius:5px!important;font-weight:600!important}
-.stDownloadButton>button:hover{background-color:var(--navy-dark)!important}
-
-/* NAVIGATION BUTTONS - override for nav bar */
-[data-testid="column"] .stButton>button[kind="primary"]{background-color:var(--saffron)!important;color:var(--navy)!important;border:1px solid var(--saffron-bdr)!important;border-radius:5px!important;font-weight:700!important;padding:10px 14px!important}
-[data-testid="column"] .stButton>button[kind="primary"]:hover{background-color:var(--saffron-bdr)!important;border-color:var(--navy)!important}
-[data-testid="column"] .stButton>button[kind="secondary"]{background-color:transparent!important;color:#CBD5E0!important;border:1px solid #334155!important;border-radius:5px!important;font-weight:500!important;padding:10px 14px!important}
-[data-testid="column"] .stButton>button[kind="secondary"]:hover{background-color:rgba(232,160,32,0.1)!important;border-color:var(--saffron)!important;color:var(--saffron)!important}
+/* BUTTONS — primary navy with saffron override for active nav */
+.stButton>button{background-color:var(--navy)!important;color:#FFFFFF!important;border:1px solid var(--navy)!important;border-radius:5px!important;font-weight:600!important}
+.stButton>button:hover{background-color:var(--navy-dark)!important;border-color:var(--navy-dark)!important}
+.stButton>button[kind="primary"]{background-color:var(--saffron)!important;color:var(--navy)!important;border:1px solid var(--saffron)!important;font-weight:700!important}
+.stButton>button[kind="primary"]:hover{background-color:var(--saffron-bdr)!important}
+.stButton>button[kind="secondary"]{background-color:#334155!important;color:#CBD5E0!important;border:1px solid #556575!important}
+.stButton>button[kind="secondary"]:hover{background-color:#445566!important;border-color:var(--saffron)!important;color:var(--saffron)!important}
 
 /* TABS */
-[data-testid="stTabs"] [data-baseweb="tab-list"]{background-color:var(--bg-alt)!important;border-bottom:2px solid var(--border)!important;border-radius:6px 6px 0 0!important}
-[data-testid="stTabs"] [data-baseweb="tab"]{color:var(--text-muted)!important;font-weight:600!important;padding:10px 18px!important;border-bottom:3px solid transparent!important;background:transparent!important}
+[data-testid="stTabs"] [data-baseweb="tab-list"]{background-color:var(--bg-alt)!important;border-bottom:2px solid var(--border)!important}
+[data-testid="stTabs"] [data-baseweb="tab"]{color:var(--text-muted)!important;font-weight:600!important;padding:10px 18px!important}
 [data-testid="stTabs"] [data-baseweb="tab"][aria-selected="true"]{color:var(--navy)!important;border-bottom:3px solid var(--navy)!important;background-color:var(--bg-page)!important}
-[data-testid="stTabs"] [data-baseweb="tab"]:hover{color:var(--navy)!important;background-color:#dce5f0!important}
 
 /* DATA TABLES — #2C5282 header with white text */
 [data-testid="stDataFrame"] thead tr th,.stDataFrame thead tr th{background-color:#2C5282!important;color:#FFFFFF!important;font-weight:700!important;font-size:0.78rem!important;text-transform:uppercase!important;letter-spacing:0.04em!important;padding:10px 12px!important;border-bottom:2px solid var(--saffron)!important}
@@ -152,13 +145,6 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 .section-title{color:var(--navy);font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border-bottom:2px solid var(--border-light);padding-bottom:5px;margin:1.4rem 0 0.8rem}
 .section-title::before{content:"";display:inline-block;width:4px;height:1em;background:var(--saffron);margin-right:8px;vertical-align:middle;border-radius:2px}
 
-.app-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-header) 100%);border-bottom:4px solid var(--saffron);padding:1.5rem 2rem;margin-bottom:1.25rem;border-radius:0;box-shadow:0 2px 8px rgba(27,58,107,0.2);display:flex;align-items:center;justify-content:space-between;gap:2rem}
-.app-header-content{flex:1}
-.app-header h1{color:#FFFFFF!important;margin:0;font-size:clamp(1.1rem,3vw,1.6rem);letter-spacing:0.02em}
-.app-header p{color:rgba(255,255,255,0.75);margin:4px 0 0;font-size:0.8rem}
-.app-header-logos{display:flex;align-items:center;gap:1.5rem}
-.app-header-logo{height:50px;width:auto;object-fit:contain}
-
 .role-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.04em}
 .role-manager{background:var(--saffron-bg);color:var(--navy);border:1px solid var(--saffron)}
 .role-officer{background:var(--error-bg);color:var(--error);border:1px solid var(--error)}
@@ -171,7 +157,6 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 
 .timeline-bar{height:8px;border-radius:4px;background:var(--bg-alt);margin:4px 0;overflow:hidden}
 .timeline-fill{height:100%;border-radius:4px;background:var(--navy)}
-.overdue-chip{background:var(--error-bg);color:var(--error);border:1px solid var(--error);border-radius:4px;padding:2px 8px;font-size:0.7rem}
 
 .module-banner{background:var(--bg-alt);border:1px solid var(--border);border-left:4px solid var(--navy);border-radius:6px;padding:10px 16px;margin-bottom:1rem}
 .module-banner .banner-tag{color:var(--navy);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
@@ -187,20 +172,6 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 
 .info-card{background:var(--bg-alt);border:1px solid var(--border-light);border-radius:6px;padding:12px 16px}
 .access-denied{background:var(--error-bg);border:2px solid var(--error);border-radius:8px;padding:1.5rem;text-align:center;color:var(--error);margin:1rem 0}
-.nav-section{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)!important;padding:10px 4px 2px;font-weight:700}
-
-/* NAV BAR */
-.nav-bar{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-header) 100%);padding:16px 0;margin:0;margin-bottom:0;border-bottom:3px solid var(--saffron);box-shadow:0 2px 8px rgba(27,58,107,0.2);width:100vw;margin-left:calc(-50vw + 50%)}
-.nav-bar-container{padding:0 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.nav-bar .stButton>button{font-size:0.85rem!important;padding:8px 16px!important;height:auto!important;border-radius:5px!important}
-.nav-bar .stButton>button[kind="primary"]{background-color:var(--saffron)!important;color:var(--navy)!important;border-color:var(--saffron-bdr)!important;font-weight:700!important}
-.nav-bar .stButton>button[kind="primary"]:hover{background-color:var(--saffron-bdr)!important}
-.nav-bar .stButton>button[kind="secondary"]{background-color:rgba(255,255,255,0.12)!important;color:#FFFFFF!important;border-color:rgba(255,255,255,0.3)!important}
-.nav-bar .stButton>button[kind="secondary"]:hover{background-color:rgba(255,255,255,0.22)!important}
-.nav-spacer{flex:1;}
-.nav-user-info{color:#FFFFFF;font-size:0.75rem;font-weight:600;padding:0 12px;display:flex;align-items:center;gap:8px;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.2);padding-left:12px}
-
-hr{border-color:var(--border-light)!important;margin:1rem 0!important}
 
 .footer-container{background-color:#1B3A6B;color:#ffffff;padding:30px 20px;font-size:13px;border-top:4px solid #E8A020;margin-top:40px}
 .footer-container strong{color:#E8A020}
@@ -254,16 +225,18 @@ if st.session_state.current_page not in real_pages:
     st.session_state.current_page = real_pages[0]
 
 # ══════════════════════════════════════════════════════════════════
-# TOP HEADER WITH LOGO & EXIT
+# HEADER WITH LOGO & EXIT BUTTON
 # ══════════════════════════════════════════════════════════════════
+st.markdown('<div style="margin-top: 12px;"></div>', unsafe_allow_html=True)
+
 logo_b64 = get_image_base64("assests/Logo-angara.png")
 logo_img = f'<img src="{logo_b64}" alt="Angara" style="height: 50px; object-fit: contain;">' if logo_b64 else '<span style="font-weight: bold; font-size: 1.2rem;">ANGARA</span>'
 
-header_col1, header_col2, header_col3 = st.columns([0.8, 10, 1.2])
-with header_col1:
-    st.markdown(f'<div style="display: flex; align-items: center; justify-content: center; height: 60px;">{logo_img}</div>', unsafe_allow_html=True)
+hdr_col1, hdr_col2, hdr_col3 = st.columns([0.8, 10, 1.2])
+with hdr_col1:
+    st.markdown(f'<div style="padding: 10px 0;">{logo_img}</div>', unsafe_allow_html=True)
 
-with header_col3:
+with hdr_col3:
     if st.button("Exit", key="logout_btn", type="secondary"):
         for k in list(st.session_state.keys()):
             del st.session_state[k]
@@ -272,25 +245,23 @@ with header_col3:
 # ══════════════════════════════════════════════════════════════════
 # NAVIGATION BAR
 # ══════════════════════════════════════════════════════════════════
-st.markdown("""<div style="background-color: #1B3A6B; padding: 8px 20px; margin: 0 -2rem; display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">""", unsafe_allow_html=True)
+st.markdown('<div style="margin-top: 8px; background-color: #1B3A6B; margin-left: -2rem; margin-right: -2rem; padding: 12px 20px; display: flex; gap: 6px; align-items: center;">', unsafe_allow_html=True)
 
 nav_cols = st.columns([1.2] * len(nav_options) + [1])
 for idx, page_option in enumerate(nav_options):
     with nav_cols[idx]:
         is_active = st.session_state.current_page == page_option
-        btn_type = "primary" if is_active else "secondary"
-        if st.button(page_option, key=f"nav_{idx}", use_container_width=True, type=btn_type):
+        if st.button(page_option, key=f"nav_{idx}", use_container_width=True, type=("primary" if is_active else "secondary")):
             st.session_state.current_page = page_option
             st.rerun()
 
-# User info
 with nav_cols[-1]:
     st.markdown(
-        f'<div style="display: flex; align-items: center; justify-content: flex-end; height: 40px; color: #CBD5E0; font-size: 0.85rem; font-weight: 600;">{role_icon}</div>',
+        f'<div style="color: #CBD5E0; font-size: 0.85rem; font-weight: 600; text-align: right;">{role_icon}</div>',
         unsafe_allow_html=True,
     )
 
-st.markdown("""</div>""", unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════
 # APP HEADER (dashboard & pages)
