@@ -183,6 +183,10 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 
 hr{border-color:var(--border-light)!important;margin:1rem 0!important}
 
+.footer-container{background-color:#1B3A6B;color:#ffffff;padding:30px 20px;font-size:13px;border-top:4px solid#E8A020;margin-top:40px}
+.footer-container strong{color:#E8A020}
+.footer-container small{color:#CBD5E0}
+
 @media(max-width:640px){[data-testid="column"]{min-width:100%!important;flex:1 1 100%!important}.stDataFrame{font-size:12px}}
 </style>
 """, unsafe_allow_html=True)
@@ -302,7 +306,17 @@ def _build_zip() -> bytes:
 def render_footer():
     """Render government-style footer with project branding."""
     st.markdown("""
-    <div style="background-color: #1B3A6B; color: #ffffff; padding: 30px 20px; font-size: 13px; border-top: 4px solid #E8A020; margin-top: 40px; margin-left: -100vw; margin-right: -100vw; padding-left: calc(100vw - 100%); padding-right: calc(100vw - 100%); width: 100vw;">
+    <style>
+    .footer-container {
+        background-color: #1B3A6B;
+        color: #ffffff;
+        padding: 30px 20px;
+        font-size: 13px;
+        border-top: 4px solid #E8A020;
+        margin-top: 40px;
+    }
+    </style>
+    <div class="footer-container">
       <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
         
         <!-- Top Row -->

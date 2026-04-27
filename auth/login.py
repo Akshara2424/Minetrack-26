@@ -72,7 +72,17 @@ def render_login():
     
     # Footer
     st.markdown("""
-    <div style="background-color: #1B3A6B; color: #ffffff; padding: 30px 20px; font-size: 13px; border-top: 4px solid #E8A020; margin-top: 40px; margin-left: -100vw; margin-right: -100vw; padding-left: calc(100vw - 100%); padding-right: calc(100vw - 100%); width: 100vw;">
+    <style>
+    .footer-container {
+        background-color: #1B3A6B;
+        color: #ffffff;
+        padding: 30px 20px;
+        font-size: 13px;
+        border-top: 4px solid #E8A020;
+        margin-top: 40px;
+    }
+    </style>
+    <div class="footer-container">
       <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
         
         <!-- Top Row -->
