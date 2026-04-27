@@ -409,7 +409,7 @@ if projects_df.empty:
     # FORM SECTION - BELOW HERO (outside the column structure)
     if st.session_state.get("show_create_modal"):
         st.markdown('<div style="margin-bottom: 2rem;"></div>', unsafe_allow_html=True)
-        st.markdown('<div style="background:#EEF2F7;border:2px solid #1B3A6B;border-radius:8px;padding:24px;margin-bottom:30px;">', unsafe_allow_html=True)
+        st.markdown('<div style="background:#EEF2F7;border-radius:8px;padding:24px;margin-bottom:30px;">', unsafe_allow_html=True)
         st.markdown('<h3 style="color:#1B3A6B;margin-top:0;margin-bottom:20px;">Create New Project</h3>', unsafe_allow_html=True)
         
         with st.form("create_first_project_form", clear_on_submit=True):
@@ -496,12 +496,6 @@ pid   = st.session_state.selected_project_id
 pname = st.session_state.selected_project_name
 
 if not pid:
-    st.markdown("""
-    <div style="text-align:center;padding:4rem 2rem;">
-      <h2 style="color:#1B3A6B;">Select or create a project</h2>
-      <p style="color:#4A5568;font-size:0.95rem;">Use the selector above to get started.</p>
-    </div>
-    """, unsafe_allow_html=True)
     render_footer()
     st.stop()
 
