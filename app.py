@@ -415,7 +415,7 @@ if projects_df.empty:
     
     # MIDDLE COLUMN - DHANBAD MINES IMAGE
     with col_image:
-        dhanbad_img = get_image_base64("assests/dhanbad-mines.png")
+        dhanbad_img = get_image_base64("assests/Dhanbad-mines.png")
         if dhanbad_img:
             st.markdown(f"""
             <div style="height: 320px; display: flex; align-items: center; justify-content: center;">

@@ -35,7 +35,7 @@ def init_session():
 def render_login():
     # Display header image
     try:
-        st.image("assests/header.png", use_container_width=True)
+        st.image("assests/Header.png", use_container_width=True)
     except:
         st.warning("Header image not found")
     
