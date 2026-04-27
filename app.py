@@ -291,9 +291,6 @@ with nav_cols[-1]:
     )
 
 st.markdown("""</div>""", unsafe_allow_html=True)
-        st.rerun()
-
-st.markdown("</div></div>", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════
 # APP HEADER (dashboard & pages)
