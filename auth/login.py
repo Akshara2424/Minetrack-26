@@ -24,16 +24,6 @@ def render_login():
     except:
         st.warning("Header image not found")
     
-    # Add CSS to remove left padding from login form labels
-    st.markdown("""
-    <style>
-        /* Remove left padding from labels in login form */
-        .stTextInput label, .stSelectbox label {
-            padding-left: 0 !important;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-    
     # Center form in 60% width
     left_space, form_col, right_space = st.columns([1, 3, 1])
     
@@ -43,13 +33,12 @@ def render_login():
         with col1:
             username = st.text_input("Name / ID", placeholder="e.g. Rajesh Kumar", key="login_name")
         with col2:
-            role_col1, role_col2 = st.columns([4, 0.8])
+            role_col1, role_col2 = st.columns([4, 1])
             with role_col1:
                 role = st.selectbox("Role", ["— select —"] + ROLES, key="login_role")
             with role_col2:
                 st.markdown("<br>", unsafe_allow_html=True)
-                # Circular button for role permissions
-                if st.button("?", key="show_permissions", help="View role permissions"):
+                if st.button("?", key="show_permissions", help="View role permissions", use_container_width=True):
                     st.session_state.show_role_perms = not st.session_state.get("show_role_perms", False)
         
         # Show permissions if toggled
