@@ -1,4 +1,4 @@
-# ⛏️ Angara — Integrated Compliance System
+# Angara — Integrated Compliance System
 
 **Modules 1 & 2 — Coal Mine Regulatory Tracker + Reporting**
 IIT-BHU Angara · Jindal Steel & Power
