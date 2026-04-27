@@ -125,6 +125,12 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 .stDownloadButton>button{background-color:var(--navy)!important;color:#FFFFFF!important;border:1px solid var(--navy)!important;border-radius:5px!important;font-weight:600!important}
 .stDownloadButton>button:hover{background-color:var(--navy-dark)!important}
 
+/* NAVIGATION BUTTONS - override for nav bar */
+[data-testid="column"] .stButton>button[kind="primary"]{background-color:var(--saffron)!important;color:var(--navy)!important;border:1px solid var(--saffron-bdr)!important;border-radius:5px!important;font-weight:700!important;padding:10px 14px!important}
+[data-testid="column"] .stButton>button[kind="primary"]:hover{background-color:var(--saffron-bdr)!important;border-color:var(--navy)!important}
+[data-testid="column"] .stButton>button[kind="secondary"]{background-color:transparent!important;color:#CBD5E0!important;border:1px solid #334155!important;border-radius:5px!important;font-weight:500!important;padding:10px 14px!important}
+[data-testid="column"] .stButton>button[kind="secondary"]:hover{background-color:rgba(232,160,32,0.1)!important;border-color:var(--saffron)!important;color:var(--saffron)!important}
+
 /* TABS */
 [data-testid="stTabs"] [data-baseweb="tab-list"]{background-color:var(--bg-alt)!important;border-bottom:2px solid var(--border)!important;border-radius:6px 6px 0 0!important}
 [data-testid="stTabs"] [data-baseweb="tab"]{color:var(--text-muted)!important;font-weight:600!important;padding:10px 18px!important;border-bottom:3px solid transparent!important;background:transparent!important}
@@ -248,36 +254,43 @@ if st.session_state.current_page not in real_pages:
     st.session_state.current_page = real_pages[0]
 
 # ══════════════════════════════════════════════════════════════════
-# TOP NAVIGATION BAR
+# TOP HEADER WITH LOGO & EXIT
 # ══════════════════════════════════════════════════════════════════
-st.markdown('<div class="nav-bar"><div class="nav-bar-container">', unsafe_allow_html=True)
+logo_b64 = get_image_base64("assests/Logo-angara.png")
+logo_img = f'<img src="{logo_b64}" alt="Angara" style="height: 50px; object-fit: contain;">' if logo_b64 else '<span style="font-weight: bold; font-size: 1.2rem;">ANGARA</span>'
 
-# Navigation buttons - equal width for all nav items
-nav_cols = st.columns([1] * len(nav_options) + [0.5, 1.2, 0.5], gap="small")
+header_col1, header_col2, header_col3 = st.columns([0.8, 10, 1.2])
+with header_col1:
+    st.markdown(f'<div style="display: flex; align-items: center; justify-content: center; height: 60px;">{logo_img}</div>', unsafe_allow_html=True)
+
+with header_col3:
+    if st.button("Exit", key="logout_btn", type="secondary"):
+        for k in list(st.session_state.keys()):
+            del st.session_state[k]
+        st.rerun()
+
+# ══════════════════════════════════════════════════════════════════
+# NAVIGATION BAR
+# ══════════════════════════════════════════════════════════════════
+st.markdown("""<div style="background-color: #1B3A6B; padding: 8px 20px; margin: 0 -2rem; display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">""", unsafe_allow_html=True)
+
+nav_cols = st.columns([1.2] * len(nav_options) + [1])
 for idx, page_option in enumerate(nav_options):
     with nav_cols[idx]:
         is_active = st.session_state.current_page == page_option
-        btn_type  = "primary" if is_active else "secondary"
+        btn_type = "primary" if is_active else "secondary"
         if st.button(page_option, key=f"nav_{idx}", use_container_width=True, type=btn_type):
             st.session_state.current_page = page_option
             st.rerun()
 
-# Spacer
-with nav_cols[-3]:
-    st.markdown("")
-
 # User info
-with nav_cols[-2]:
+with nav_cols[-1]:
     st.markdown(
-        f'<div class="nav-user-info">{role_icon} {st.session_state.username}</div>',
+        f'<div style="display: flex; align-items: center; justify-content: flex-end; height: 40px; color: #CBD5E0; font-size: 0.85rem; font-weight: 600;">{role_icon}</div>',
         unsafe_allow_html=True,
     )
 
-# Exit button
-with nav_cols[-1]:
-    if st.button("Exit", key="logout_btn", use_container_width=True, type="secondary"):
-        for k in list(st.session_state.keys()):
-            del st.session_state[k]
+st.markdown("""</div>""", unsafe_allow_html=True)
         st.rerun()
 
 st.markdown("</div></div>", unsafe_allow_html=True)
