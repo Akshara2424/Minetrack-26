@@ -183,12 +183,6 @@ h1,h2,h3,p,span{padding:4px 6px!important}
 .footer-container strong{color:#E8A020}
 .footer-container small{color:#6B7280}
 
-.milestone-menu-wrap{display:inline-block;position:relative;margin:0 0 0.75rem 0}
-.milestone-menu-trigger{background:var(--navy);color:#FFFFFF;padding:0.6rem 1rem;border-radius:6px;font-weight:700;letter-spacing:0.03em;display:inline-block}
-.milestone-menu-content{display:none;position:absolute;top:100%;left:0;min-width:220px;background:#FFFFFF;border:1px solid var(--border-light);border-radius:8px;box-shadow:0 8px 24px rgba(27,58,107,0.15);z-index:50;overflow:hidden}
-.milestone-menu-wrap:hover .milestone-menu-content{display:block}
-.milestone-menu-content a{display:block;padding:0.8rem 1rem;color:var(--navy);text-decoration:none;font-weight:600;background:#FFFFFF}
-.milestone-menu-content a:hover{background:var(--bg-alt)}
 
 @media(max-width:640px){[data-testid="column"]{min-width:100%!important;flex:1 1 100%!important}.stDataFrame{font-size:12px}}
 </style>
@@ -516,40 +510,11 @@ milestones_df = get_milestones(pid)
 # ══════════════════════════════════════════════════════════════════
 page = st.session_state.current_page
 
-milestone_section = "update"
-if hasattr(st, "query_params"):
-    milestone_section = st.query_params.get("section", milestone_section)
-    if isinstance(milestone_section, list):
-        milestone_section = milestone_section[0] if milestone_section else "update"
-else:
-    qp = st.experimental_get_query_params()
-    milestone_section = qp.get("section", [milestone_section])[0]
-
-if milestone_section not in {"update", "add"}:
-    milestone_section = "update"
-else:
-    st.session_state.current_page = "Milestones"
-    page = "Milestones"
-
 if page == "Milestones":
-    st.markdown(
-        """
-        <div class="milestone-menu-wrap">
-          <div class="milestone-menu-trigger">Milestones</div>
-          <div class="milestone-menu-content">
-            <a href="?section=update">Update Milestone</a>
-            <a href="?section=add">Add Milestone</a>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    if milestone_section == "add":
-        st.markdown("## Add Milestone", unsafe_allow_html=True)
-        add_milestone.render(pid)
-    else:
-        st.markdown("## Update Milestone", unsafe_allow_html=True)
-        update_form.render(milestones_df, project_start)
+    st.markdown(f"## Milestones — {pname}")
+    update_form.render(milestones_df, project_start)
+    st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
+    add_milestone.render(pid)
 
 elif page == "Reports":
     st.markdown(f"## Reports — {pname}")
