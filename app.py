@@ -267,12 +267,12 @@ st.markdown('</div>', unsafe_allow_html=True)
 # ══════════════════════════════════════════════════════════════════
 st.markdown(f"""
 <div style="background:linear-gradient(135deg,#1B3A6B 0%,#2C5282 100%);border-bottom:4px solid #E8A020;padding:1.5rem 2rem;border-radius:0;box-shadow:0 2px 8px rgba(27,58,107,0.2);text-align:center;margin-top:0px;margin-bottom:2.5rem;">
-  <h1 style="color:#F5F5F5;margin:0;font-size:1.6rem;letter-spacing:0.02em;">Angara — Compliance System</h1>
-  <p style="color:#E8E8E8;margin:4px 0 0;font-size:0.8rem;">
-    <span style="background:#FEF6E4;color:#1B3A6B;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.04em;display:inline-block;">{role_icon}</span>
-    &nbsp;·&nbsp; {st.session_state.username}
-    &nbsp;·&nbsp; Ministry of Coal MIS System
-  </p>
+    <h1 style="color:#FFFFFF;margin:0;font-size:1.6rem;letter-spacing:0.02em;">Angara — Compliance System</h1>
+    <p style="color:#E8E8E8;margin:4px 0 0;font-size:0.8rem;">
+        <span style="background:#FEF6E4;color:#1B3A6B;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.04em;display:inline-block;">{role_icon}</span>
+        &nbsp;·&nbsp; {st.session_state.username}
+        &nbsp;·&nbsp; Ministry of Coal MIS System
+    </p>
 </div>
 """, unsafe_allow_html=True)
 def _build_zip() -> bytes:
